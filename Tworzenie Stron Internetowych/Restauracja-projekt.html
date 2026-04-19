@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restauracja Smaki Natury</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+    }
+
+    header {
+      background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') center/cover no-repeat;
+      color: white;
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      background-color: #81a764;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background: #f3f3f3;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    nav button:hover,
+    nav button:focus {
+      background: #e0e0e0;
+      outline: none;
+    }
+
+    body.dark-mode nav {
+      background-color: #5b794b;
+    }
+
+    body.dark-mode nav button {
+      background: #4e6441;
+      color: #f0f0f0;
+    }
+
+    body.dark-mode nav button:hover,
+    body.dark-mode nav button:focus {
+      background: #6d8653;
+      color: #fff;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .intro img {
+      max-width: 400px;
+      border-radius: 0.5rem;
+      margin: 1.5rem 0;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-section {
+      display: none;
+    }
+
+    .menu-section.active {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    #contact.menu-section.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .menu-item {
+      background: #ffffff;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .menu-item:hover,
+    .menu-item:focus {
+      transform: translateY(-4px);
+      box-shadow: 0 0 15px rgba(130, 130, 130, 0.7);
+      outline: none;
+    }
+
+    .menu-item img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-item h3 {
+      margin-bottom: 0.3rem;
+      text-align: center;
+      color: #222;
+    }
+
+    body.dark-mode .menu-item {
+      background: #2b2b2b;
+      color: #f0f0f0;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    body.dark-mode .menu-item h3 {
+      color: #eee;
+    }
+
+    body.dark-mode .menu-item:hover,
+    body.dark-mode .menu-item:focus {
+      box-shadow: 0 0 15px rgba(180, 180, 180, 0.8);
+    }
+
+    form {
+      margin-top: 1.5rem;
+      background: #f1f1f1;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #333;
+    }
+
+    body.dark-mode form {
+      background: #2b2b2b;
+      color: #f0f0f0;
+    }
+
+    form label {
+      display: block;
+      margin-top: 1rem;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 0.3rem;
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    body.dark-mode form input,
+    body.dark-mode form textarea {
+      background: #3a3a3a;
+      border-color: #555;
+      color: #eee;
+    }
+
+    form button {
+      margin-top: 1rem;
+      background: #81a764;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 0.3rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    form button:hover,
+    form button:focus {
+      background: #6f9253;
+      outline: none;
+    }
+
+    #contact-info {
+      max-width: 500px;
+      margin: 2rem auto 0 auto;
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #444;
+    }
+
+    body.dark-mode #contact-info {
+      background: #2b2b2b;
+      color: #ddd;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    footer {
+      background: #4a7c4a;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    /* Popup overlay styles */
+    #popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    #popup {
+      background: #fff;
+      padding: 1.5rem 2rem;
+      border-radius: 0.5rem;
+      max-width: 320px;
+      width: 90%;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      color: #333;
+      position: relative;
+    }
+
+    body.dark-mode #popup {
+      background: #2b2b2b;
+      color: #f0f0f0;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+
+    #popup button.close-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    #popup button.close-btn:focus {
+      outline: 2px solid #81a764;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Restauracja "Smaki Natury"</h1>
+  </header>
+
+  <nav>
+    <button onclick="showSection('intro')" onkeydown="handleNavKey(event, 'intro')" tabindex="0">Strona główna</button>
+    <button onclick="showSection('menu')" onkeydown="handleNavKey(event, 'menu')" tabindex="0">Menu</button>
+    <button onclick="showSection('contact')" onkeydown="handleNavKey(event, 'contact')" tabindex="0">Kontakt</button>
+    <button onclick="toggleDarkMode()" onkeydown="handleDarkModeKey(event)" tabindex="0">Tryb ciemny</button>
+  </nav>
+
+  <main>
+    <section id="intro" class="intro menu-section active" tabindex="-1">
+      <h2>Witamy!</h2>
+      <p>
+        Nasza restauracja to połączenie pasji do gotowania i natury. Serwujemy dania, które powstają z lokalnych i świeżych składników, dbając o najwyższą jakość i smak. W przyjaznej atmosferze oferujemy naszym gościom wyjątkowe doświadczenia kulinarne, łącząc tradycję z nowoczesnością.
+      </p>
+      <p>
+        Zapraszamy do naszego przytulnego wnętrza, gdzie każdy znajdzie coś dla siebie – od lekkich sałatek, przez aromatyczne zupy, aż po wykwintne dania główne i domowe desery. Dziękujemy, że jesteś z nami!
+      </p>
+      <img src="https://studiolinea.pl/lib/zvve2b/projekt-restauracja-1-lx0hrz4p.webp" alt="Wnętrze restauracji Smaki Natury" />
+    </section>
+
+    <section id="menu" class="menu-section" tabindex="-1" aria-label="Menu restauracji">
+      <div class="menu-item" tabindex="0" role="button" aria-pressed="false" data-name="Sałatka Zielona" data-price="18">
+        <img src="https://az.przepisy.pl/www-przepisy-pl/www.przepisy.pl/przepisy3ii/img/variants/800x0/salatka-z-pieczonych-warzyw.jpg" alt="Sałatka z warzywami" />
+        <h3>Sałatka Zielona</h3>
+        <p>Świeża mieszanka warzyw z oliwą z oliwek.</p>
+      </div>
+
+      <div class="menu-item" tabindex="0" role="button" aria-pressed="false" data-name="Krem z dyni" data-price="22">
+        <img src="https://img.wprost.pl/img/uwielbiam-te-zdrowa-sezonowa-zupe-jest-pozywna-pyszna-i-robie-ja-na-poczekaniu/da/22/82e23c50544ee9ea3eb20765559f.webp" alt="Krem z dyni" />
+        <h3>Krem z dyni</h3>
+        <p>Aksamitna zupa z pieczonej dyni z imbirem.</p>
+      </div>
+
+      <div class="menu-item" tabindex="0" role="button" aria-pressed="false" data-name="Makaron z pesto" data-price="28">
+        <img src="https://staticsmaker.iplsc.com/smaker_production_2023_09_20/1e33f18e5570cb63deb001a9c33aeff6-content.png" alt="Makaron z pesto" />
+        <h3>Makaron z pesto</h3>
+        <p>Makaron z domowym pesto i parmezanem.</p>
+      </div>
+
+      <div class="menu-item" tabindex="0" role="button" aria-pressed="false" data-name="Łosoś pieczony" data-price="45">
+        <img src="https://img.wprost.pl/img/losos-pieczony-w-piekarniku-przepis-na-smaczna-rybe-jak-z-najlepszej-restauracji/5c/ce/0c25f233a3a91670090108b0a3a5.webp" alt="Pieczony łosoś" />
+        <h3>Łosoś pieczony</h3>
+        <p>Pieczony łosoś z grillowanymi warzywami.</p>
+      </div>
+
+      <div class="menu-item" tabindex="0" role="button" aria-pressed="false" data-name="Risotto z grzybami" data-price="35">
+        <img src="https://misamocy.pl/wp-content/uploads/2020/09/risotto-z-grzybami-15-scaled.jpg" alt="Risotto z grzybami" />
+        <h3>Risotto z grzybami</h3>
+        <p>Kremowe risotto z borowikami i parmezanem.</p>
+      </div>
+
+      <div class="menu-item" tabindex="0" role="button" aria-pressed="false" data-name="Deser czekoladowy" data-price="20">
+        <img src="https://cdn.aniagotuje.com/pictures/articles/2019/02/195001-v-1000x1000.jpg" alt="Deser czekoladowy" />
+        <h3>Deser czekoladowy</h3>
+        <p>Mus z gorzkiej czekolady z truskawkami.</p>
+      </div>
+
+      <div class="menu-item" tabindex="0" role="button" aria-pressed="false" data-name="Lemoniada cytrusowa" data-price="12">
+        <img src="https://cdn.galleries.smcloud.net/t/galleries/gf-VsyF-5e7U-aeRc_lemoniada-cytrusowa-przepis-na-lemoniade-z-cytryn-limonek-i-pomaranczy-1920x1080-nocrop.jpg" alt="Lemoniada cytrusowa" />
+        <h3>Lemoniada cytrusowa</h3>
+        <p>Orzeźwiający napój z cytrusów i mięty.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="menu-section" aria-labelledby="kontakt-heading" tabindex="-1">
+      <h3 id="kontakt-heading" style="text-align:center; margin-bottom: 1rem;">Skontaktuj się z nami</h3>
+      <form>
+        <label for="name">Imię:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">Wiadomość:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Wyślij</button>
+      </form>
+
+      <div id="contact-info">
+        <p><strong>Adres:</strong> ul. Zielona 15, 00-123 Warszawa</p>
+        <p><strong>Telefon:</strong> +48 123 456 789</p>
+        <p><strong>E-mail:</strong> kontakt@smakinatury.pl</p>
+        <p><strong>Godziny otwarcia:</strong> Pon - Sob: 12:00 - 22:00, Niedziela: 12:00 - 20:00</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Restauracja "Smaki Natury". Wszelkie prawa zastrzeżone.</p>
+  </footer>
+
+  <!-- Popup for price -->
+  <div id="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-title" tabindex="-1">
+    <div id="popup">
+      <button class="close-btn" aria-label="Zamknij popup">&times;</button>
+      <h2 id="popup-title"></h2>
+      <p id="popup-price"></p>
+    </div>
+  </div>
+
+  <script>
+    const scrollPositions = {
+        'intro': 0,
+        'menu': 0,
+        'contact': 0
+    };
+
+    let currentSection = 'intro';
+
+    function showSection(sectionId) {
+        scrollPositions[currentSection] = window.scrollY || document.documentElement.scrollTop;
+        
+        document.querySelectorAll('.menu-section').forEach(sec => {
+            sec.classList.remove('active');
+            sec.style.display = 'none';
+        });
+        
+        const section = document.getElementById(sectionId);
+        section.classList.add('active');
+        section.style.display = sectionId === 'menu' ? 'grid' : 'block';
+        section.focus();
+        
+        currentSection = sectionId;
+        
+        if (sectionId === 'intro') {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        } else {
+            setTimeout(() => {
+                window.scrollTo({
+                    top: scrollPositions[sectionId] || 0,
+                    behavior: 'auto'
+                });
+            }, 10);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.menu-section').forEach(sec => {
+            if (!sec.classList.contains('active')) {
+                sec.style.display = 'none';
+            }
+        });
+        
+        if (window.location.hash === '' || window.location.hash === '#intro') {
+            const introSection = document.getElementById('intro');
+            introSection.style.minHeight = 'calc(100vh - 300px)';
+            introSection.style.display = 'flex';
+            introSection.style.flexDirection = 'column';
+            introSection.style.justifyContent = 'center';
+            introSection.style.alignItems = 'center';
+        }
+    });
+
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+
+    function handleNavKey(event, sectionId) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            showSection(sectionId);
+        }
+    }
+
+    function handleDarkModeKey(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            toggleDarkMode();
+        }
+    }
+
+    const menuItems = document.querySelectorAll('.menu-item');
+    const popupOverlay = document.getElementById('popup-overlay');
+    const popupTitle = document.getElementById('popup-title');
+    const popupPrice = document.getElementById('popup-price');
+    const popupCloseBtn = document.querySelector('#popup button.close-btn');
+
+    menuItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            const itemRect = item.getBoundingClientRect();
+            const itemTop = itemRect.top + window.scrollY;
+            
+            const name = item.getAttribute('data-name');
+            const price = item.getAttribute('data-price');
+            popupTitle.textContent = name;
+            popupPrice.textContent = `Cena: ${price} zł`;
+            popupOverlay.style.display = 'flex';
+            popupCloseBtn.focus();
+            
+            popupCloseBtn.onclick = () => {
+                popupOverlay.style.display = 'none';
+                window.scrollTo({
+                    top: itemTop - 100,
+                    behavior: 'smooth'
+                });
+                item.focus();
+            };
+        });
+
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                item.click();
+            }
+        });
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && popupOverlay.style.display === 'flex') {
+            popupOverlay.style.display = 'none';
+            const lastFocusedItem = document.querySelector('.menu-item:focus');
+            if (lastFocusedItem) {
+                const itemRect = lastFocusedItem.getBoundingClientRect();
+                const itemTop = itemRect.top + window.scrollY;
+                window.scrollTo({
+                    top: itemTop - 100,
+                    behavior: 'smooth'
+                });
+                lastFocusedItem.focus();
+            }
+        }
+    });
+</script>
+</body>
+
+</html>
