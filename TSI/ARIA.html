@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Review HTML Accessibility – WAI‑ARIA & Semantyka</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.5; margin: 20px; }
+    fieldset { margin-bottom: 1em; }
+    .accordion-button { display: block; width: 100%; text-align: left; }
+    .accordion-content.hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Review HTML Accessibility</h1>
+    <nav aria-label="Główna nawigacja">
+      <ul>
+        <li><a href="#form-section">Formularz</a></li>
+        <li><a href="#image-alt">Obrazki</a></li>
+        <li><a href="#headings">Nagłówki</a></li>
+        <li><a href="#accordion">Akordeon</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- 1. Formularz z semantyką i aria -->
+    <section id="form-section">
+      <h2>1. Formularz</h2>
+      <form>
+        <fieldset>
+          <legend>Dane użytkownika</legend>
+
+          <div>
+            <label for="name">Imię i nazwisko:</label>
+            <input type="text" id="name" name="name" required aria-required="true" />
+          </div>
+
+          <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" aria-required="true" aria-invalid="false" />
+            <small id="email-help">Podaj prawidłowy adres e-mail.</small>
+          </div>
+
+          <div>
+            <span>Płeć:</span>
+            <fieldset aria-labelledby="gender-group">
+              <legend id="gender-group">Wybierz płeć</legend>
+              <label><input type="radio" name="gender" value="male" /> Mężczyzna</label>
+              <label><input type="radio" name="gender" value="female" /> Kobieta</label>
+            </fieldset>
+          </div>
+
+          <div>
+            <label for="message">Wiadomość:</label>
+            <textarea id="message" name="message" placeholder="Napisz coś..." aria-describedby="msg-desc"></textarea>
+            <small id="msg-desc">To pole jest opcjonalne.</small>
+          </div>
+
+          <button type="submit">Wyślij</button>
+        </fieldset>
+      </form>
+    </section>
+
+    <!-- 2. Obrazki i alt -->
+    <section id="image-alt">
+      <h2>2. Obrazki – atrybut <code>alt</code></h2>
+      <img src="https://png.pngtree.com/thumb_back/fw800/background/20250319/pngtree-a-serene-mountain-landscape-at-sunrise-featuring-misty-lake-silhouetted-evergreens-image_17093812.jpg" alt="Górski krajobraz z jeziorem o wschodzie słońca" width="300" />
+      <figure>
+        <img src="https://png.pngtree.com/element_our/20190530/ourmid/pngtree-correct-icon-image_1267804.jpg" alt="" width="50" />
+        <figcaption>Ikona dekoracyjna – tekst opisowy znajduje się tutaj.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 3. Logiczna struktura nagłówków -->
+    <section id="headings">
+      <h2>3. Struktura nagłówków</h2>
+      <h3>Podsekcja A</h3>
+      <p>Tekst w sekcji A...</p>
+      <h3>Podsekcja B</h3>
+      <p>Tekst w sekcji B...</p>
+    </section>
+
+    <!-- 4. Akordeon z aria-expanded -->
+    <section id="accordion">
+      <h2>4. Akordeon (aria-expanded)</h2>
+
+      <button class="accordion-button" aria-expanded="false" aria-controls="panel1" id="btn1">
+        Co to jest ARIA?
+      </button>
+      <div class="accordion-content hidden" id="panel1" aria-labelledby="btn1">
+        ARIA (Accessible Rich Internet Applications) to zestaw atrybutów zwiększających dostępność.
+      </div>
+
+      <button class="accordion-button" aria-expanded="false" aria-controls="panel2" id="btn2">
+        Dlaczego używać alt?
+      </button>
+      <div class="accordion-content hidden" id="panel2" aria-labelledby="btn2">
+        Atrybut alt pozwala osobom korzystającym z czytników ekranu zrozumieć, co przedstawia obraz.
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    document.querySelectorAll('.accordion-button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        const panel = document.getElementById(btn.getAttribute('aria-controls'));
+        btn.setAttribute('aria-expanded', String(!expanded));
+        panel.classList.toggle('hidden');
+      });
+    });
+  </script>
+
+</body>
+</html>
