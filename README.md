@@ -1,35 +1,58 @@
-To repozytorium stanowi moje portfolio projektów związanych z branżą IT. Zawiera ono przykłady kodu oraz aplikacji, które rozwijałem w ramach nauki, eksperymentów oraz praktycznych zastosowań różnych technologii.
+# 💻 Portfolio projektów – Wiktor Mądry
 
-Celem repozytorium jest zaprezentowanie moich umiejętności programistycznych, sposobu rozwiązywania problemów oraz znajomości narzędzi wykorzystywanych w nowoczesnym środowisku IT.
+Witaj! 👋
 
----
+To repozytorium zawiera moje projekty realizowane podczas studiów, samodzielnej nauki oraz własnych eksperymentów programistycznych. Znajdziesz tutaj aplikacje desktopowe, projekty webowe, analizy danych oraz rozwiązania tworzone z wykorzystaniem różnych technologii.
 
-🛠️ Technologie i języki
-
-W repozytorium znajdują się projekty wykorzystujące:
-
-* 🌐 HTML – struktura stron internetowych
-* 🎨 CSS – stylowanie i responsywność interfejsów
-* ⚡ JavaScript – logika po stronie klienta
-* 💻 C# – aplikacje desktopowe / backend
-* ⚙️ C++ – programowanie systemowe i algorytmy
-* 📊 R (RStudio) – analiza danych i statystyka
+Każdy projekt pozwolił mi zdobyć praktyczne doświadczenie w programowaniu, pracy z bazami danych oraz tworzeniu i rozwijaniu oprogramowania. Repozytorium stanowi dokumentację mojego rozwoju oraz umiejętności zdobywanych podczas nauki i realizacji własnych pomysłów.
 
 ---
 
-Repozytorium jest stale rozwijane. Moje główne cele to:
+## 📂 Projekty
 
-* rozwijanie umiejętności programistycznych
-* poznawanie nowych technologii
-* budowanie praktycznych projektów
-* przygotowanie do pracy w sektorze IT
+| Projekt | Technologia | Opis |
+|---------|------------|------|
+| 🏦 Bankomat | C# | Symulator bankomatu umożliwiający wykonywanie podstawowych operacji na koncie. |
+| 💼 Program HR | C# | Aplikacja wspomagająca zarządzanie pracownikami oraz danymi kadrowymi. |
+| 🌐 Tworzenie Stron Internetowych | HTML, CSS, JavaScript | Projekty stron internetowych z responsywnym interfejsem użytkownika. |
+| 📊 RStudio | R | Analiza i wizualizacja danych z wykorzystaniem języka R. |
+| 📚 Wypożyczalnia | C# | System zarządzania wypożyczaniem zasobów. |
+| 🧮 Kalkulator | C# | Aplikacja realizująca podstawowe działania matematyczne. |
+| ⚙️ C++ | C++ | Zbiór projektów i ćwiczeń rozwijających umiejętności programowania. |
+| 🔞 Weryfikator wieku | C# | Aplikacja sprawdzająca wiek użytkownika na podstawie podanej daty urodzenia. |
+| 🌳 Hierarchia | C# | Projekt przedstawiający wykorzystanie hierarchii klas i programowania obiektowego. |
 
 ---
 
-## ⭐ Uwagi
+## 🛠️ Technologie i narzędzia
 
-Repozytorium ma charakter edukacyjny i rozwojowy – niektóre projekty mogą być w trakcie rozbudowy lub optymalizacji.
+W projektach wykorzystuję między innymi:
+
+- 💻 C# – aplikacje desktopowe
+- ⚙️ C++ – programowanie obiektowe i algorytmy
+- 🌐 HTML – struktura stron internetowych
+- 🎨 CSS – stylizacja i responsywność interfejsów
+- ⚡ JavaScript – logika po stronie klienta
+- 🗄️ Microsoft SQL Server / SQL Server Management Studio – bazy danych i zapytania SQL
+- 📊 R (RStudio) – analiza danych i statystyka
+- 🔧 Visual Studio – tworzenie aplikacji
+- 📁 Git oraz GitHub – kontrola wersji i zarządzanie projektami
 
 ---
 
-Dzięki za odwiedzenie mojego portfolio! 🚀
+## 🚀 Rozwój
+
+Repozytorium jest stale rozwijane. W kolejnych projektach planuję:
+
+- rozwijać aplikacje w języku C#,
+- tworzyć bardziej rozbudowane projekty wykorzystujące bazy danych SQL,
+- publikować kolejne analizy danych w języku R,
+- poszerzać portfolio o nowe technologie oraz praktyczne rozwiązania wykorzystywane w branży IT.
+
+---
+
+## ⭐ Informacje
+
+Większość projektów powstała podczas nauki na studiach oraz samodzielnego rozwijania umiejętności programistycznych. Niektóre z nich są nadal rozwijane i sukcesywnie ulepszane wraz ze zdobywanym doświadczeniem.
+
+Dziękuję za odwiedzenie mojego portfolio! 🚀
